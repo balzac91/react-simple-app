@@ -1,0 +1,11 @@
+{
+  "name": "react-simple-app",
+  "version": "0.0.1",
+  "description": "React simple app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balzac91/react-simple-app.git"
+  },
+  "author": "Kamil Fus",
+  "license": "MIT"
+}
