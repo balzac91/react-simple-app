@@ -1,8 +1,10 @@
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
   output: {
+    path: './dist',
     filename: 'bundle.js'
   },
   devtool: 'inline-source-map',
@@ -26,6 +28,9 @@ module.exports = {
       output: {
         comments: false
       }
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
     })
   ],
   devServer: {
