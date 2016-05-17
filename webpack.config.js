@@ -7,13 +7,15 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   module: {
+    preLoaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader'
+    }],
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['es2015', 'react']
-      }
+      loader: 'babel'
     }]
   },
   plugins: [
@@ -25,5 +27,8 @@ module.exports = {
         comments: false
       }
     })
-  ]
+  ],
+  devServer: {
+    stats: 'minimal'
+  }
 };
