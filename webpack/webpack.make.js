@@ -1,5 +1,8 @@
+const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function (options) {
   const BUILD = !!options.BUILD;
@@ -17,20 +20,41 @@ module.exports = function (options) {
     preLoaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'eslint-loader'
+      loader: 'eslint'
     }],
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel'
+    }, {
+      test: /\.(png|jpg|jpeg|gif|svg)$/,
+      loader: 'file?name=images/[name].[ext]'
+    }, {
+      test: /\.(woff|woff2|ttf|eot)$/,
+      loader: 'file?name=fonts/[name].[ext]'
+    }, {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style', 'css!postcss')
     }]
+  };
+
+  config.postcss = function () {
+    return [autoprefixer];
   };
 
   config.plugins = [
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+    new ExtractTextPlugin('styles.css')
   ];
+
+  config.resolve = {
+    alias: {
+      styles: path.resolve('src/styles'),
+      assets: path.resolve('src/assets')
+    }
+  };
 
   /**
    * Only for dev environment
