@@ -9,7 +9,8 @@
   "author": "Kamil Fus",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --inline --content-base src/"
+    "dev": "webpack-dev-server --inline --content-base src/",
+    "build": "webpack -p"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
