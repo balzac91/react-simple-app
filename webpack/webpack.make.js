@@ -27,14 +27,6 @@ module.exports = function (options) {
   };
 
   config.plugins = [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
-      }
-    }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
@@ -57,7 +49,20 @@ module.exports = function (options) {
   if (BUILD) {
     config.plugins = config.plugins.concat([
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurrenceOrderPlugin(true)
+      new webpack.optimize.OccurrenceOrderPlugin(true),
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        },
+        output: {
+          comments: false
+        }
+      })
     ]);
   }
 
