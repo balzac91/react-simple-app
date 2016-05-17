@@ -1,5 +1,4 @@
 {
-//  "extends": "defaults/configurations/walmart/es6-react",
   "extends": "airbnb",
   "parserOptions": {
     "ecmaVersion": 6,
