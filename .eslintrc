@@ -13,5 +13,12 @@
   },
   "plugins": [
     "react"
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack/webpack.dev.js"
+      }
+    }
+  }
 }
