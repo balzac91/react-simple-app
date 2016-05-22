@@ -33,8 +33,8 @@ module.exports = function (options) {
       test: /\.(woff|woff2|ttf|eot)$/,
       loader: 'file?name=fonts/[name].[ext]'
     }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css!postcss')
+      test: /\.(less|css)$/,
+      loader: ExtractTextPlugin.extract('style', 'css!postcss!less')
     }]
   };
 
